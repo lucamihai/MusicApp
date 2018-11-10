@@ -22,6 +22,13 @@ namespace MusicApp
             UserControlFiles = new List<UserControlFile>();
         }
 
+
+        /// <summary>
+        /// Displays an <see cref="OpenFileDialog"/> with Multiselect enabled and creates a <see cref="UserControlFile"/> instance
+        /// for each file provided in the dialog.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAddFiles_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -43,6 +50,7 @@ namespace MusicApp
                 }
             }
 
+            // If there's at least one file, enable certain buttons
             if (UserControlFiles.Count > 0)
             {
                 buttonRemoveAll.Enabled      = true;
@@ -50,6 +58,12 @@ namespace MusicApp
             }
         }
 
+
+        /// <summary>
+        /// Displays a <see cref="FolderBrowserDialog"/> and stores the folder path provided in the dialog.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSelectDestination_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -60,6 +74,13 @@ namespace MusicApp
             }
         }
 
+
+        /// <summary>
+        /// Removes any <see cref="UserControlFile"/> instance that is checked.
+        /// Rebuilds <see cref="panelFiles"/> with the remaining <see cref="UserControlFile"/> instances.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRemoveSelected_Click(object sender, EventArgs e)
         {
             panelFiles.Controls.Clear();
@@ -98,9 +119,19 @@ namespace MusicApp
             }
         }
 
+
+        /// <summary>
+        /// Removes all the <see cref="UserControlFile"/> instances and clears the controls of <see cref="panelFiles"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRemoveAll_Click(object sender, EventArgs e)
         {
+            panelFiles.Controls.Clear();
+            UserControlFiles.Clear();
 
+            buttonRemoveAll.Enabled      = false;
+            buttonRemoveSelected.Enabled = false;
         }
     }
 }

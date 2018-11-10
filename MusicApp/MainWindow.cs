@@ -133,5 +133,84 @@ namespace MusicApp
             buttonRemoveAll.Enabled      = false;
             buttonRemoveSelected.Enabled = false;
         }
+
+
+        /// <summary>
+        /// Checks the checkbox of every <see cref="UserControlFile"/> instance.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSelectAll_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlFile userControlFile in UserControlFiles)
+            {
+                userControlFile.SelectFile();
+            }
+        }
+
+
+        /// <summary>
+        /// Deselects any selected <see cref="UserControlFile"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDeselect_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlFile userControlFile in UserControlFiles)
+            {
+                userControlFile.DeselectFile();
+            }
+        }
+
+
+        /// <summary>
+        /// For each selected <see cref="UserControlFile"/>, creates a file at the destination path 
+        /// + an increasing number (starting from the value of <see cref="numericBeginFrom"/>) 
+        /// + the file's name.
+        /// <para>
+        /// For example, if <see cref="numericBeginFrom"/>'s value is 1, "0001.Filename1.extension" will be created,
+        /// then "0002.Filename2.extension", and so on.
+        /// </para>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCreateFiles_Click(object sender, EventArgs e)
+        {
+            int currentNumber = (int)numericBeginFrom.Value;
+
+            foreach (UserControlFile userControlFile in UserControlFiles)
+            {
+                if (userControlFile.Selected)
+                {
+                    string fileNumberString = currentNumber.ToString();
+
+                    // Determine how many zeroes should be placed before the number
+                    // For example, for the number 5, there should be placed 3 zeroes, resulting in 0005
+                    int missingZeroes = 4 - fileNumberString.Length;
+                    for (int step = 0; step < missingZeroes; step++)
+                    {
+                        fileNumberString = "0" + fileNumberString;
+                    }
+
+                    string destinationFileName = fileNumberString + ". " + userControlFile.FileName;
+                    string destinationFilePath = textBoxDestination.Text + "\\" + destinationFileName;
+
+                    // Try and catch used in case a file already exists, and overwrite is not activated.
+                    try
+                    {
+                        System.IO.File.Copy(userControlFile.FilePath, destinationFilePath, checkBoxOverwrite.Checked);
+                    }
+
+                    catch
+                    {
+                        
+                    }
+
+                    currentNumber++;
+                }
+            }
+
+            MessageBox.Show("Done");
+        }
     }
 }

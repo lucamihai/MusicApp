@@ -36,6 +36,25 @@ namespace MusicApp.UserControls
             textBoxFileName.Text = words[words.Length - 1];
         }
 
+
+        /// <summary>
+        /// Checks the <see cref="checkBoxSelect"/>
+        /// </summary>
+        public void SelectFile()
+        {
+            checkBoxSelect.Checked = true;
+        }
+
+
+        /// <summary>
+        /// Unchecks the <see cref="checkBoxSelect"/>
+        /// </summary>
+        public void DeselectFile()
+        {
+            checkBoxSelect.Checked = false;
+        }
+
+
         /// <summary>
         /// The path of the file
         /// </summary>
@@ -47,6 +66,7 @@ namespace MusicApp.UserControls
             }
         }
 
+
         /// <summary>
         /// The name of the file
         /// </summary>
@@ -57,6 +77,7 @@ namespace MusicApp.UserControls
                 return textBoxFileName.Text;
             }
         }
+
 
         /// <summary>
         /// True if the file is selected

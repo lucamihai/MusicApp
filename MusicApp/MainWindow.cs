@@ -85,8 +85,6 @@ namespace MusicApp
         /// <param name="e"></param>
         private void buttonRemoveSelected_Click(object sender, EventArgs e)
         {
-            panelFiles.Controls.Clear();
-
             List<UserControlFile> userControlFilesToBeRemoved = new List<UserControlFile>();
             foreach (UserControlFile userControlFile in UserControlFiles)
             {
@@ -112,19 +110,26 @@ namespace MusicApp
         }
 
 
+        /// <summary>
+        /// Clears all the controls from <see cref="panelFiles"/>, then readds them in the order found in <see cref="UserControlFiles"/>.
+        /// </summary>
         void RebuildPanelControls()
         {
+            panelFiles.Controls.Clear();
+
             int counter = 0;
             foreach (UserControlFile userControlFile in UserControlFiles)
             {
                 // Determine the y coordinate of the user control
                 int numberOfFiles = UserControlFiles.Count;
-                int yCoordinate = (userControlFile.Height + 10) * counter++;
+                int yCoordinate = (userControlFile.Height + 10) * counter;
                 userControlFile.Location = new Point(0, yCoordinate);
 
                 panelFiles.Controls.Add(userControlFile);
 
                 userControlFile.FileNumber = counter;
+
+                counter++;
             }
         }
 
@@ -153,7 +158,7 @@ namespace MusicApp
         {
             foreach (UserControlFile userControlFile in UserControlFiles)
             {
-                userControlFile.SelectFile();
+                userControlFile.Selected = true;
             }
         }
 
@@ -167,7 +172,7 @@ namespace MusicApp
         {
             foreach (UserControlFile userControlFile in UserControlFiles)
             {
-                userControlFile.DeselectFile();
+                userControlFile.Selected = false;
             }
         }
 
@@ -220,6 +225,39 @@ namespace MusicApp
             }
 
             MessageBox.Show("Done");
+        }
+
+
+        /// <summary>
+        /// Tries to set userControlFile's position at newPosition.
+        /// If there is an element at that index, will perform a swap between these 2 elements.
+        /// If newPosition is higher than <see cref="UserControlFiles"/>'s Count, resets userControlFile's numeric value to
+        /// its original value.
+        /// </summary>
+        /// <param name="userControlFile"></param>
+        /// <param name="newPosition"></param>
+        public void ChangePosition(UserControlFile userControlFile, int newPosition)
+        {
+            int oldPosition = UserControlFiles.IndexOf(userControlFile);
+
+            if (oldPosition == newPosition)
+            { 
+                return;
+            }
+
+            if (newPosition >= UserControlFiles.Count)
+            {
+                userControlFile.FileNumber = oldPosition;
+                return;
+            }
+
+            UserControlFile userControlFileToBeSwappedWith = UserControlFiles[newPosition];
+            UserControlFiles[newPosition] = userControlFile;
+            UserControlFiles[oldPosition] = userControlFileToBeSwappedWith;
+
+            RebuildPanelControls();
+
+            //MessageBox.Show("File " + userControlFile.FileName + " wants to change from position " + oldPosition + " to " + newPosition);
         }
     }
 }

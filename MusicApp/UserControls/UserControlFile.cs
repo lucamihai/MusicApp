@@ -38,24 +38,6 @@ namespace MusicApp.UserControls
 
 
         /// <summary>
-        /// Checks the <see cref="checkBoxSelect"/>
-        /// </summary>
-        public void SelectFile()
-        {
-            checkBoxSelect.Checked = true;
-        }
-
-
-        /// <summary>
-        /// Unchecks the <see cref="checkBoxSelect"/>
-        /// </summary>
-        public void DeselectFile()
-        {
-            checkBoxSelect.Checked = false;
-        }
-
-
-        /// <summary>
         /// The path of the file
         /// </summary>
         public string FilePath
@@ -104,6 +86,16 @@ namespace MusicApp.UserControls
             {
                 return checkBoxSelect.Checked;
             }
+            set
+            {
+                checkBoxSelect.Checked = value;
+            }
+        }
+
+
+        private void numericFileNumber_ValueChanged(object sender, EventArgs e)
+        {
+            mainWindow.ChangePosition(this, (int)numericFileNumber.Value);
         }
     }
 }

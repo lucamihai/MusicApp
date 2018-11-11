@@ -86,7 +86,6 @@
             // 
             // numericFileNumber
             // 
-            this.numericFileNumber.Enabled = false;
             this.numericFileNumber.Location = new System.Drawing.Point(64, 3);
             this.numericFileNumber.Maximum = new decimal(new int[] {
             9999,
@@ -96,6 +95,7 @@
             this.numericFileNumber.Name = "numericFileNumber";
             this.numericFileNumber.Size = new System.Drawing.Size(73, 20);
             this.numericFileNumber.TabIndex = 5;
+            this.numericFileNumber.ValueChanged += new System.EventHandler(this.numericFileNumber_ValueChanged);
             // 
             // label3
             // 

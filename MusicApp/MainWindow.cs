@@ -56,6 +56,8 @@ namespace MusicApp
                 buttonRemoveAll.Enabled      = true;
                 buttonRemoveSelected.Enabled = true;
             }
+
+            RebuildPanelControls();
         }
 
 
@@ -106,7 +108,12 @@ namespace MusicApp
                 return;
             }
 
-            // Rebuild panel controls
+            RebuildPanelControls();
+        }
+
+
+        void RebuildPanelControls()
+        {
             int counter = 0;
             foreach (UserControlFile userControlFile in UserControlFiles)
             {
@@ -116,6 +123,8 @@ namespace MusicApp
                 userControlFile.Location = new Point(0, yCoordinate);
 
                 panelFiles.Controls.Add(userControlFile);
+
+                userControlFile.FileNumber = counter;
             }
         }
 

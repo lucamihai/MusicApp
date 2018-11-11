@@ -80,6 +80,22 @@ namespace MusicApp.UserControls
 
 
         /// <summary>
+        /// The index of the file from the list
+        /// </summary>
+        public int FileNumber
+        {
+            set
+            {
+                numericFileNumber.Value = (decimal)value;
+            }
+            get
+            {
+                return (int)numericFileNumber.Value;
+            }
+        }
+
+
+        /// <summary>
         /// True if the file is selected
         /// </summary>
         public bool Selected

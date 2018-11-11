@@ -22,6 +22,7 @@ namespace MusicApp
             UserControlFiles = new List<UserControlFile>();
         }
 
+        #region File managing
 
         /// <summary>
         /// Displays an <see cref="OpenFileDialog"/> with Multiselect enabled and creates a <see cref="UserControlFile"/> instance
@@ -62,17 +63,98 @@ namespace MusicApp
 
 
         /// <summary>
-        /// Displays a <see cref="FolderBrowserDialog"/> and stores the folder path provided in the dialog.
+        /// Prompts a folder browser dialog, gets all the file paths from the selected folder, and adds them to the file list.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonSelectDestination_Click(object sender, EventArgs e)
+        private void buttonOpenFolder_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
 
             if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                textBoxDestination.Text = folderBrowserDialog.SelectedPath;
+                foreach (string file in System.IO.Directory.GetFiles(folderBrowserDialog.SelectedPath))
+                {
+                    UserControlFile userControlFile = new UserControlFile(file, this);
+
+                    // Determine the y coordinate of the new user control
+                    int numberOfFiles = UserControlFiles.Count;
+                    int yCoordinate = (userControlFile.Height + 10) * numberOfFiles;
+                    userControlFile.Location = new Point(0, yCoordinate);
+
+                    UserControlFiles.Add(userControlFile);
+                    panelFiles.Controls.Add(userControlFile);
+                }
+
+                // If there's at least one file, enable certain buttons
+                if (UserControlFiles.Count > 0)
+                {
+                    buttonRemoveAll.Enabled = true;
+                    buttonRemoveSelected.Enabled = true;
+                }
+
+                RebuildPanelControls();
+            }
+        }
+
+
+        /// <summary>
+        /// Tries to set userControlFile's position at newPosition.
+        /// If there is an element at that index, will perform a swap between these 2 elements.
+        /// If newPosition is higher than <see cref="UserControlFiles"/>'s Count, resets userControlFile's numeric value to
+        /// its original value.
+        /// </summary>
+        /// <param name="userControlFile"></param>
+        /// <param name="newPosition"></param>
+        public void ChangePosition(UserControlFile userControlFile, int newPosition)
+        {
+            int oldPosition = UserControlFiles.IndexOf(userControlFile);
+
+            if (oldPosition == newPosition)
+            {
+                return;
+            }
+
+            if (newPosition >= UserControlFiles.Count)
+            {
+                userControlFile.FileNumber = oldPosition;
+                return;
+            }
+
+            UserControlFile userControlFileToBeSwappedWith = UserControlFiles[newPosition];
+            UserControlFiles[newPosition] = userControlFile;
+            UserControlFiles[oldPosition] = userControlFileToBeSwappedWith;
+
+            RebuildPanelControls();
+
+            //MessageBox.Show("File " + userControlFile.FileName + " wants to change from position " + oldPosition + " to " + newPosition);
+        }
+
+
+        /// <summary>
+        /// Checks the checkbox of every <see cref="UserControlFile"/> instance.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSelectAll_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlFile userControlFile in UserControlFiles)
+            {
+                userControlFile.Selected = true;
+            }
+        }
+
+
+        /// <summary>
+        /// Deselects any selected <see cref="UserControlFile"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDeselect_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlFile userControlFile in UserControlFiles)
+            {
+                userControlFile.Selected = false;
             }
         }
 
@@ -111,6 +193,21 @@ namespace MusicApp
 
 
         /// <summary>
+        /// Removes all the <see cref="UserControlFile"/> instances and clears the controls of <see cref="panelFiles"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRemoveAll_Click(object sender, EventArgs e)
+        {
+            panelFiles.Controls.Clear();
+            UserControlFiles.Clear();
+
+            buttonRemoveAll.Enabled = false;
+            buttonRemoveSelected.Enabled = false;
+        }
+
+
+        /// <summary>
         /// Clears all the controls from <see cref="panelFiles"/>, then readds them in the order found in <see cref="UserControlFiles"/>.
         /// </summary>
         void RebuildPanelControls()
@@ -133,46 +230,23 @@ namespace MusicApp
             }
         }
 
+        #endregion
+
+        #region File handling
 
         /// <summary>
-        /// Removes all the <see cref="UserControlFile"/> instances and clears the controls of <see cref="panelFiles"/>
+        /// Displays a <see cref="FolderBrowserDialog"/> and stores the folder path provided in the dialog.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonRemoveAll_Click(object sender, EventArgs e)
+        private void buttonSelectDestination_Click(object sender, EventArgs e)
         {
-            panelFiles.Controls.Clear();
-            UserControlFiles.Clear();
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
 
-            buttonRemoveAll.Enabled      = false;
-            buttonRemoveSelected.Enabled = false;
-        }
-
-
-        /// <summary>
-        /// Checks the checkbox of every <see cref="UserControlFile"/> instance.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonSelectAll_Click(object sender, EventArgs e)
-        {
-            foreach (UserControlFile userControlFile in UserControlFiles)
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                userControlFile.Selected = true;
-            }
-        }
-
-
-        /// <summary>
-        /// Deselects any selected <see cref="UserControlFile"/>
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonDeselect_Click(object sender, EventArgs e)
-        {
-            foreach (UserControlFile userControlFile in UserControlFiles)
-            {
-                userControlFile.Selected = false;
+                textBoxDestination.Text = folderBrowserDialog.SelectedPath;
+                buttonCreateFiles.Enabled = true;
             }
         }
 
@@ -227,37 +301,7 @@ namespace MusicApp
             MessageBox.Show("Done");
         }
 
+        #endregion
 
-        /// <summary>
-        /// Tries to set userControlFile's position at newPosition.
-        /// If there is an element at that index, will perform a swap between these 2 elements.
-        /// If newPosition is higher than <see cref="UserControlFiles"/>'s Count, resets userControlFile's numeric value to
-        /// its original value.
-        /// </summary>
-        /// <param name="userControlFile"></param>
-        /// <param name="newPosition"></param>
-        public void ChangePosition(UserControlFile userControlFile, int newPosition)
-        {
-            int oldPosition = UserControlFiles.IndexOf(userControlFile);
-
-            if (oldPosition == newPosition)
-            { 
-                return;
-            }
-
-            if (newPosition >= UserControlFiles.Count)
-            {
-                userControlFile.FileNumber = oldPosition;
-                return;
-            }
-
-            UserControlFile userControlFileToBeSwappedWith = UserControlFiles[newPosition];
-            UserControlFiles[newPosition] = userControlFile;
-            UserControlFiles[oldPosition] = userControlFileToBeSwappedWith;
-
-            RebuildPanelControls();
-
-            //MessageBox.Show("File " + userControlFile.FileName + " wants to change from position " + oldPosition + " to " + newPosition);
-        }
     }
 }

@@ -78,7 +78,7 @@ namespace MusicApp.UserControls
 
 
         /// <summary>
-        /// True if the file is selected
+        /// Boolean value, representing whether the "Select" checkbox is checked or not.
         /// </summary>
         public bool Selected
         {
@@ -93,6 +93,11 @@ namespace MusicApp.UserControls
         }
 
 
+        /// <summary>
+        /// Used to change position of the file in the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numericFileNumber_ValueChanged(object sender, EventArgs e)
         {
             mainWindow.ChangePosition(this, (int)numericFileNumber.Value);

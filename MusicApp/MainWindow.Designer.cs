@@ -55,7 +55,7 @@
             this.panelFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panelFiles.Location = new System.Drawing.Point(23, 179);
             this.panelFiles.Name = "panelFiles";
-            this.panelFiles.Size = new System.Drawing.Size(742, 477);
+            this.panelFiles.Size = new System.Drawing.Size(680, 477);
             this.panelFiles.TabIndex = 0;
             // 
             // buttonAddFiles
@@ -98,6 +98,7 @@
             this.buttonOpenFolder.TabIndex = 4;
             this.buttonOpenFolder.Text = "Open folder";
             this.buttonOpenFolder.UseVisualStyleBackColor = true;
+            this.buttonOpenFolder.Click += new System.EventHandler(this.buttonOpenFolder_Click);
             // 
             // buttonSelectDestination
             // 
@@ -121,6 +122,7 @@
             // 
             // buttonCreateFiles
             // 
+            this.buttonCreateFiles.Enabled = false;
             this.buttonCreateFiles.Location = new System.Drawing.Point(801, 271);
             this.buttonCreateFiles.Name = "buttonCreateFiles";
             this.buttonCreateFiles.Size = new System.Drawing.Size(117, 23);

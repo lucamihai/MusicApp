@@ -38,15 +38,20 @@
             this.buttonCreateFiles = new System.Windows.Forms.Button();
             this.buttonSelectAll = new System.Windows.Forms.Button();
             this.buttonDeselect = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelFileManaging = new System.Windows.Forms.Label();
+            this.labelFileHandling = new System.Windows.Forms.Label();
+            this.labelAddMultipleFiles = new System.Windows.Forms.Label();
+            this.labelOpenFolder = new System.Windows.Forms.Label();
+            this.labelDestination = new System.Windows.Forms.Label();
             this.numericBeginFrom = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelBeginFrom = new System.Windows.Forms.Label();
             this.checkBoxOverwrite = new System.Windows.Forms.CheckBox();
+            this.panelLanguages = new System.Windows.Forms.Panel();
+            this.radioButtonEnglish = new System.Windows.Forms.RadioButton();
+            this.radioButtonRomanian = new System.Windows.Forms.RadioButton();
+            this.labelChooseLanguage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericBeginFrom)).BeginInit();
+            this.panelLanguages.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelFiles
@@ -104,7 +109,7 @@
             // 
             this.buttonSelectDestination.Location = new System.Drawing.Point(803, 75);
             this.buttonSelectDestination.Name = "buttonSelectDestination";
-            this.buttonSelectDestination.Size = new System.Drawing.Size(101, 23);
+            this.buttonSelectDestination.Size = new System.Drawing.Size(111, 23);
             this.buttonSelectDestination.TabIndex = 5;
             this.buttonSelectDestination.Text = "Select destination";
             this.buttonSelectDestination.UseVisualStyleBackColor = true;
@@ -145,61 +150,61 @@
             // 
             this.buttonDeselect.Location = new System.Drawing.Point(113, 150);
             this.buttonDeselect.Name = "buttonDeselect";
-            this.buttonDeselect.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeselect.Size = new System.Drawing.Size(81, 23);
             this.buttonDeselect.TabIndex = 9;
             this.buttonDeselect.Text = "Deselect";
             this.buttonDeselect.UseVisualStyleBackColor = true;
             this.buttonDeselect.Click += new System.EventHandler(this.buttonDeselect_Click);
             // 
-            // label1
+            // labelFileManaging
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 23);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "File managing";
+            this.labelFileManaging.AutoSize = true;
+            this.labelFileManaging.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFileManaging.Location = new System.Drawing.Point(19, 25);
+            this.labelFileManaging.Name = "labelFileManaging";
+            this.labelFileManaging.Size = new System.Drawing.Size(128, 23);
+            this.labelFileManaging.TabIndex = 10;
+            this.labelFileManaging.Text = "File managing";
             // 
-            // label2
+            // labelFileHandling
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(799, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 23);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "File handling";
+            this.labelFileHandling.AutoSize = true;
+            this.labelFileHandling.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFileHandling.Location = new System.Drawing.Point(799, 25);
+            this.labelFileHandling.Name = "labelFileHandling";
+            this.labelFileHandling.Size = new System.Drawing.Size(119, 23);
+            this.labelFileHandling.TabIndex = 11;
+            this.labelFileHandling.Text = "File handling";
             // 
-            // label3
+            // labelAddMultipleFiles
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(104, 63);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 19);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Add multiple files";
+            this.labelAddMultipleFiles.AutoSize = true;
+            this.labelAddMultipleFiles.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAddMultipleFiles.Location = new System.Drawing.Point(104, 63);
+            this.labelAddMultipleFiles.Name = "labelAddMultipleFiles";
+            this.labelAddMultipleFiles.Size = new System.Drawing.Size(113, 19);
+            this.labelAddMultipleFiles.TabIndex = 12;
+            this.labelAddMultipleFiles.Text = "Add multiple files";
             // 
-            // label4
+            // labelOpenFolder
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(104, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(184, 19);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Add all the files from a folder";
+            this.labelOpenFolder.AutoSize = true;
+            this.labelOpenFolder.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOpenFolder.Location = new System.Drawing.Point(104, 92);
+            this.labelOpenFolder.Name = "labelOpenFolder";
+            this.labelOpenFolder.Size = new System.Drawing.Size(184, 19);
+            this.labelOpenFolder.TabIndex = 13;
+            this.labelOpenFolder.Text = "Add all the files from a folder";
             // 
-            // label5
+            // labelDestination
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(799, 107);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(152, 19);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Resulting files will go to:";
+            this.labelDestination.AutoSize = true;
+            this.labelDestination.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDestination.Location = new System.Drawing.Point(799, 107);
+            this.labelDestination.Name = "labelDestination";
+            this.labelDestination.Size = new System.Drawing.Size(152, 19);
+            this.labelDestination.TabIndex = 14;
+            this.labelDestination.Text = "Resulting files will go to:";
             // 
             // numericBeginFrom
             // 
@@ -218,15 +223,15 @@
             0,
             0});
             // 
-            // label6
+            // labelBeginFrom
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(799, 188);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 19);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Begin from:";
+            this.labelBeginFrom.AutoSize = true;
+            this.labelBeginFrom.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBeginFrom.Location = new System.Drawing.Point(799, 188);
+            this.labelBeginFrom.Name = "labelBeginFrom";
+            this.labelBeginFrom.Size = new System.Drawing.Size(78, 19);
+            this.labelBeginFrom.TabIndex = 16;
+            this.labelBeginFrom.Text = "Begin from:";
             // 
             // checkBoxOverwrite
             // 
@@ -238,20 +243,65 @@
             this.checkBoxOverwrite.Text = "Overwrite if file exists";
             this.checkBoxOverwrite.UseVisualStyleBackColor = true;
             // 
+            // panelLanguages
+            // 
+            this.panelLanguages.Controls.Add(this.labelChooseLanguage);
+            this.panelLanguages.Controls.Add(this.radioButtonRomanian);
+            this.panelLanguages.Controls.Add(this.radioButtonEnglish);
+            this.panelLanguages.Location = new System.Drawing.Point(791, 404);
+            this.panelLanguages.Name = "panelLanguages";
+            this.panelLanguages.Size = new System.Drawing.Size(200, 100);
+            this.panelLanguages.TabIndex = 18;
+            // 
+            // radioButtonEnglish
+            // 
+            this.radioButtonEnglish.AutoSize = true;
+            this.radioButtonEnglish.Location = new System.Drawing.Point(12, 40);
+            this.radioButtonEnglish.Name = "radioButtonEnglish";
+            this.radioButtonEnglish.Size = new System.Drawing.Size(59, 17);
+            this.radioButtonEnglish.TabIndex = 0;
+            this.radioButtonEnglish.TabStop = true;
+            this.radioButtonEnglish.Text = "English";
+            this.radioButtonEnglish.UseVisualStyleBackColor = true;
+            this.radioButtonEnglish.CheckedChanged += new System.EventHandler(this.radioButtonEnglish_CheckedChanged);
+            // 
+            // radioButtonRomanian
+            // 
+            this.radioButtonRomanian.AutoSize = true;
+            this.radioButtonRomanian.Location = new System.Drawing.Point(12, 63);
+            this.radioButtonRomanian.Name = "radioButtonRomanian";
+            this.radioButtonRomanian.Size = new System.Drawing.Size(73, 17);
+            this.radioButtonRomanian.TabIndex = 1;
+            this.radioButtonRomanian.TabStop = true;
+            this.radioButtonRomanian.Text = "Romanian";
+            this.radioButtonRomanian.UseVisualStyleBackColor = true;
+            this.radioButtonRomanian.CheckedChanged += new System.EventHandler(this.radioButtonRomanian_CheckedChanged);
+            // 
+            // labelChooseLanguage
+            // 
+            this.labelChooseLanguage.AutoSize = true;
+            this.labelChooseLanguage.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelChooseLanguage.Location = new System.Drawing.Point(8, 18);
+            this.labelChooseLanguage.Name = "labelChooseLanguage";
+            this.labelChooseLanguage.Size = new System.Drawing.Size(115, 19);
+            this.labelChooseLanguage.TabIndex = 19;
+            this.labelChooseLanguage.Text = "Choose language:";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panelLanguages);
             this.Controls.Add(this.checkBoxOverwrite);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelBeginFrom);
             this.Controls.Add(this.numericBeginFrom);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelDestination);
+            this.Controls.Add(this.labelOpenFolder);
+            this.Controls.Add(this.labelAddMultipleFiles);
+            this.Controls.Add(this.labelFileHandling);
+            this.Controls.Add(this.labelFileManaging);
             this.Controls.Add(this.buttonDeselect);
             this.Controls.Add(this.buttonSelectAll);
             this.Controls.Add(this.buttonCreateFiles);
@@ -265,6 +315,8 @@
             this.Name = "MainWindow";
             this.Text = "Music app";
             ((System.ComponentModel.ISupportInitialize)(this.numericBeginFrom)).EndInit();
+            this.panelLanguages.ResumeLayout(false);
+            this.panelLanguages.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,14 +334,18 @@
         private System.Windows.Forms.Button buttonCreateFiles;
         private System.Windows.Forms.Button buttonSelectAll;
         private System.Windows.Forms.Button buttonDeselect;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelFileManaging;
+        private System.Windows.Forms.Label labelFileHandling;
+        private System.Windows.Forms.Label labelAddMultipleFiles;
+        private System.Windows.Forms.Label labelOpenFolder;
+        private System.Windows.Forms.Label labelDestination;
         private System.Windows.Forms.NumericUpDown numericBeginFrom;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelBeginFrom;
         private System.Windows.Forms.CheckBox checkBoxOverwrite;
+        private System.Windows.Forms.Panel panelLanguages;
+        private System.Windows.Forms.Label labelChooseLanguage;
+        private System.Windows.Forms.RadioButton radioButtonRomanian;
+        private System.Windows.Forms.RadioButton radioButtonEnglish;
     }
 }
 

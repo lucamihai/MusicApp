@@ -15,11 +15,69 @@ namespace MusicApp
     {
         List<UserControlFile> UserControlFiles;
 
+        Dictionary<string, string> DictionaryEnglish;
+        Dictionary<string, string> DictionaryRomanian;
+
         public MainWindow()
         {
+            #region English dictionary
+
+            DictionaryEnglish = new Dictionary<string, string>();
+
+            DictionaryEnglish["File managing"] = "File managing";
+            DictionaryEnglish["Add files"] = "Add files";
+            DictionaryEnglish["Add multiple files"] = "Add multiple files";
+            DictionaryEnglish["Open folder"] = "Open folder";
+            DictionaryEnglish["Select all"] = "Select all";
+            DictionaryEnglish["Deselect"] = "Deselect";
+            DictionaryEnglish["Remove selected"] = "Remove selected";
+            DictionaryEnglish["Remove all"] = "Remove all";
+
+            DictionaryEnglish["Add all the files from a folder"] = "Add all the files from a folder";
+
+            DictionaryEnglish["File handling"] = "File handling";
+            DictionaryEnglish["Select destination"] = "Select destination";
+            DictionaryEnglish["Resulting files will go to"] = "Resulting files will go to";
+            DictionaryEnglish["Begin from"] = "Begin from";
+            DictionaryEnglish["Overwrite if file exists"] = "Overwrite if file exists";
+
+            DictionaryEnglish["Choose language"] = "Choose language";
+            DictionaryEnglish["English"] = "English";
+            DictionaryEnglish["Romanian"] = "Romanian";
+
+            #endregion
+
+            #region Romanian dictionary
+
+            DictionaryRomanian = new Dictionary<string, string>();
+
+            DictionaryRomanian["File managing"] = "Organizare fișiere";
+            DictionaryRomanian["Add files"] = "Adaugă fișiere";
+            DictionaryRomanian["Add multiple files"] = "Adaugă fișiere multiple";
+            DictionaryRomanian["Open folder"] = "Deschide folder";
+            DictionaryRomanian["Select all"] = "Selectează tot";
+            DictionaryRomanian["Deselect"] = "Deselectează";
+            DictionaryRomanian["Remove selected"] = "Elimină selecții";
+            DictionaryRomanian["Remove all"] = "Elimină tot";
+            
+            DictionaryRomanian["Add all the files from a folder"] = "Adaugă toate fișierele dintr-un folder";
+
+            DictionaryRomanian["File handling"] = "Prelucrare fișiere";
+            DictionaryRomanian["Select destination"] = "Selectează destinație";
+            DictionaryRomanian["Resulting files will go to"] = "Fișierele vor merge la";
+            DictionaryRomanian["Begin from"] = "Începe cu";
+            DictionaryRomanian["Overwrite if file exists"] = "Suprascrie fișiere existente";
+
+            DictionaryRomanian["Choose language"] = "Alege limba";
+            DictionaryRomanian["English"] = "Engleză";
+            DictionaryRomanian["Romanian"] = "Română";
+
+            #endregion
+
             InitializeComponent();
 
             UserControlFiles = new List<UserControlFile>();
+            radioButtonEnglish.Checked = true;
         }
 
         #region File managing
@@ -303,5 +361,49 @@ namespace MusicApp
 
         #endregion
 
+        #region Language selection
+
+        /// <summary>
+        /// Updates text from the interface to the desired language.
+        /// </summary>
+        /// <param name="ChosenLanguage">Dictionary of the desired language.</param>
+        void TranslateText(Dictionary<string, string> ChosenLanguage)
+        {
+            try
+            {
+                labelFileManaging.Text = ChosenLanguage["File managing"];
+                buttonAddFiles.Text = ChosenLanguage["Add files"];
+                labelAddMultipleFiles.Text = ChosenLanguage["Add multiple files"];
+                buttonOpenFolder.Text = ChosenLanguage["Open folder"];
+                buttonSelectAll.Text = ChosenLanguage["Select all"];
+                buttonDeselect.Text = ChosenLanguage["Deselect"];
+                buttonRemoveSelected.Text = ChosenLanguage["Remove selected"];
+                buttonRemoveAll.Text = ChosenLanguage["Remove all"];
+
+                labelFileHandling.Text = ChosenLanguage["File handling"];
+                buttonSelectDestination.Text = ChosenLanguage["Select destination"];
+                labelDestination.Text = ChosenLanguage["Resulting files will go to"];
+                labelBeginFrom.Text = ChosenLanguage["Begin from"];
+                checkBoxOverwrite.Text = ChosenLanguage["Overwrite if file exists"];
+
+                labelChooseLanguage.Text = ChosenLanguage["Choose language"];
+                radioButtonEnglish.Text = ChosenLanguage["English"];
+                radioButtonRomanian.Text = ChosenLanguage["Romanian"];
+            }
+
+            catch { }
+        }
+
+        private void radioButtonEnglish_CheckedChanged(object sender, EventArgs e)
+        {
+            TranslateText(DictionaryEnglish);
+        }
+
+        private void radioButtonRomanian_CheckedChanged(object sender, EventArgs e)
+        {
+            TranslateText(DictionaryRomanian);
+        }
+
+        #endregion
     }
 }
